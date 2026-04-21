@@ -1,0 +1,20 @@
+<h1>URL Shortener</h1>
+
+<% if flash[:error].present? %>
+  <div style="color: red;">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
+<form action="/shorten" method="post" data-turbo="false">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+  <input type="text" name="url" placeholder="Enter URL" required />
+  <button type="submit">Shorten</button>
+</form>
+
+<% if @short_url.present? %>
+  <h2>Result</h2>
+  <p><strong>Short URL:</strong> <%= @short_url %></p>
+  <p><strong>Original URL:</strong> <%= @original_url %></p>
+  <p><strong>Title:</strong> <%= @title %></p>
+<% end %>

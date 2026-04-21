@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: one
+  ip_address: MyString
+  visited_at: 2026-04-21 12:17:20
+  country: MyString
+
+two:
+  url: two
+  ip_address: MyString
+  visited_at: 2026-04-21 12:17:20
+  country: MyString

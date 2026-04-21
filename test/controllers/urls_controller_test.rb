@@ -18,7 +18,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
 
   test "POST /shorten returns JSON for JSON request" do
     post "/shorten", 
-      params: { url: "https://google.com" },
+      params: { url: "https://google.com" }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :success
     json = JSON.parse(response.body)
@@ -29,7 +29,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
 
   test "POST /shorten with invalid URL returns error" do
     post "/shorten", 
-      params: { url: "not-a-url" },
+      params: { url: "not-a-url" }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :bad_request
     json = JSON.parse(response.body)
@@ -38,7 +38,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
 
   test "POST /shorten with missing URL returns error" do
     post "/shorten", 
-      params: { url: "" },
+      params: { url: "" }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :bad_request
   end
@@ -69,7 +69,8 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
 
   # Web form tests
   test "POST /shorten from web form works" do
-    post "/shorten", params: { url: "https://example.com", authenticity_token: form_authenticity_token }
+    get "/"  # Get the form page to get authenticity token
+    post "/shorten", params: { url: "https://example.com" }
     assert_response :success
   end
 
@@ -77,14 +78,14 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
   test "POST /shorten with very long URL" do
     long_url = "https://example.com/" + "a" * 2000
     post "/shorten", 
-      params: { url: long_url },
+      params: { url: long_url }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :success
   end
 
   test "POST /shorten with special characters in URL" do
     post "/shorten", 
-      params: { url: "https://example.com/?q=hello%20world&id=123" },
+      params: { url: "https://example.com/?q=hello%20world&id=123" }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :success
   end

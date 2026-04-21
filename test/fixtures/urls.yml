@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  original_url: MyString
-  short_code: MyString
+  original_url: https://fixture1.com
+  short_code: fixture1
   expires_at: 2026-04-20 18:43:14
   clicks_count: 1
 
 two:
-  original_url: MyString
-  short_code: MyString
+  original_url: https://fixture2.com
+  short_code: fixture2
   expires_at: 2026-04-20 18:43:14
   clicks_count: 1

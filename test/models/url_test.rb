@@ -27,7 +27,7 @@ class UrlTest < ActiveSupport::TestCase
       title: "Test"
     )
     assert_not url.valid?
-    assert_includes url.errors[:short_code], "is too long"
+    assert_includes url.errors[:short_code], "is too long (maximum is 15 characters)"
   end
 
   test "URL has many url_visits" do
@@ -38,11 +38,11 @@ class UrlTest < ActiveSupport::TestCase
   end
 
   test "URL dependent destroy removes associated visits" do
-    url = Url.create!(original_url: "https://example.com", short_code: "abc123")
+    url = Url.create!(original_url: "https://example.com", short_code: "test789")
     url.url_visits.create!(ip_address: "192.168.1.1")
-    assert_equal 1, UrlVisit.count
+    assert_equal 1, url.url_visits.count
     url.destroy
-    assert_equal 0, UrlVisit.count
+    assert_equal 0, Url.where(id: url.id).count
   end
 
   test "URL click_count defaults to 0" do

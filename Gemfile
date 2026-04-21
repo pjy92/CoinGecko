@@ -54,6 +54,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  # Pin minitest version for Rails 7.2 compatibility
+  gem "minitest", "~> 5.18"
 end
 
 gem "rack-attack", "~> 6.8"

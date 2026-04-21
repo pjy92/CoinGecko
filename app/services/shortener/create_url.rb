@@ -32,7 +32,7 @@ module Shortener
       short_code = Base62.encode(url_record.id)
       url_record.update!(short_code: short_code)
 
-      { short_url: short_code, title: title, url: url_record }
+      { short_url: short_code, original_url: @url, title: title, url: url_record }
     end
 
     private

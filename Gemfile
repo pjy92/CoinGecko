@@ -55,7 +55,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   # Pin minitest version for Rails 7.2 compatibility
-  gem "minitest", "~> 5.18"
+  gem "minitest", "~> 6.0"
 end
 
 gem "rack-attack", "~> 6.8"

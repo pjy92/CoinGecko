@@ -17,7 +17,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "POST /shorten returns JSON for JSON request" do
-    post "/shorten", 
+    post "/shorten",
       params: { url: "https://google.com" }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :success
@@ -28,7 +28,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "POST /shorten with invalid URL returns error" do
-    post "/shorten", 
+    post "/shorten",
       params: { url: "not-a-url" }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :bad_request
@@ -37,7 +37,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "POST /shorten with missing URL returns error" do
-    post "/shorten", 
+    post "/shorten",
       params: { url: "" }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :bad_request
@@ -77,14 +77,14 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
   # Edge cases
   test "POST /shorten with very long URL" do
     long_url = "https://example.com/" + "a" * 2000
-    post "/shorten", 
+    post "/shorten",
       params: { url: long_url }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :success
   end
 
   test "POST /shorten with special characters in URL" do
-    post "/shorten", 
+    post "/shorten",
       params: { url: "https://example.com/?q=hello%20world&id=123" }.to_json,
       headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
     assert_response :success

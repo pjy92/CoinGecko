@@ -33,7 +33,7 @@ class UrlVisitTest < ActiveSupport::TestCase
     @url.url_visits.create!(ip_address: "192.168.1.1", country: "US")
     @url.url_visits.create!(ip_address: "192.168.1.2", country: "UK")
     @url.url_visits.create!(ip_address: "192.168.1.3", country: "CA")
-    
+
     assert_equal 3, @url.url_visits.count
   end
 end

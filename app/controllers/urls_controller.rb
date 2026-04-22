@@ -2,8 +2,8 @@ class UrlsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ArgumentError, with: :bad_request
 
-  skip_before_action :verify_authenticity_token, if: -> { 
-    request.content_type&.include?('application/json') || request.accept&.include?('application/json')
+  skip_before_action :verify_authenticity_token, if: -> {
+    request.content_type&.include?("application/json") || request.accept&.include?("application/json")
   }
 
   def create
@@ -45,14 +45,14 @@ class UrlsController < ApplicationController
     ip = request.remote_ip == "::1" ? "8.8.8.8" : request.remote_ip
     result = Geocoder.search(ip).first
     country = result&.country
-    
+
     url.url_visits.create!(
       ip_address: request.remote_ip,
       visited_at: Time.current,
       country: country
     )
 
-    redirect_to url.original_url, allow_other_host: true 
+    redirect_to url.original_url, allow_other_host: true
   end
 
   private

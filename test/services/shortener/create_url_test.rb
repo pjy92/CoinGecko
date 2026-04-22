@@ -3,7 +3,7 @@ require "test_helper"
 class Shortener::CreateUrlTest < ActiveSupport::TestCase
   test "CreateUrl creates URL with valid parameters" do
     result = Shortener::CreateUrl.call(url: "https://example.com")
-    
+
     assert result[:short_url]
     assert_equal "https://example.com", result[:original_url]
     assert result[:title]
@@ -32,7 +32,7 @@ class Shortener::CreateUrlTest < ActiveSupport::TestCase
   test "CreateUrl generates unique short code" do
     result1 = Shortener::CreateUrl.call(url: "https://example1.com")
     result2 = Shortener::CreateUrl.call(url: "https://example2.com")
-    
+
     assert_not_equal result1[:short_url], result2[:short_url]
   end
 

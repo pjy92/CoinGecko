@@ -1,8 +1,8 @@
-require 'uri'
-require 'securerandom'
-require 'open-uri'
-require 'nokogiri'
-require_relative '../../../lib/base62'
+require "uri"
+require "securerandom"
+require "open-uri"
+require "nokogiri"
+require_relative "../../../lib/base62"
 
 module Shortener
   class CreateUrl
@@ -45,7 +45,7 @@ module Shortener
     def fetch_title(url)
       html = URI.open(url, read_timeout: 5)
       doc = Nokogiri::HTML(html)
-      doc.at('title')&.text&.strip || "No title"
+      doc.at("title")&.text&.strip || "No title"
     rescue StandardError
       "No title"
     end

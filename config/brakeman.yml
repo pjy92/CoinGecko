@@ -1,7 +1,0 @@
-# Brakeman Configuration
-# Note: Ruby 3.2.2 EOL warning is informational only
-# Application is stable and will be updated to newer Ruby version as needed
-# Redirect warnings are false positives - URLs are validated at database lookup
-
-
-
